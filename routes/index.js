@@ -22,8 +22,6 @@ indexRouter.post("/new", (req, res) => {
         color: colors[Math.floor(Math.random() * colors.length)],
     };
     messages.push(newMessage);
-    console.log(username);
-    console.log(message);
     res.redirect("/");
 });
 
