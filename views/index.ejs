@@ -9,18 +9,29 @@
     <body>
         <%- include("partials/header") %>
         <div id="chatroom">
-            <% for (message of messages) { %>
+            <% for (let i = 0; i <messages.length; i++) { %>
                 <div class="message">
                     <div
                         class="profile-name"
-                        <%- `style="background-color: ${message.color};"`%>
+                        <%- `style="background-color: ${messages[i].color};"`%>
                     >
-                        <%= message.user[0] %>
+                        <%= messages[i].user[0] %>
                     </div>
                     <div class="message-text-div">
-                        <div class="message-text"><%= message.text %></div>
-                        
+                        <div class="message-text"><%= messages[i].text %></div>                        
                     </div>
+                    <div class="details-btn-div">
+                        <button class="details-btn" data-id="<%= i %>">details</button>
+                    </div>
+                    <dialog class="details-dialogue" id="details-<%= i %>">
+                        <div class="dialogue-div">
+                            <p class="msg-txt"><span>Message:</span> <%= messages[i].text %></p>
+                            <p class="author"><span>Author:</span> <%= messages[i].user %></p>
+                            <p class="date"><span>Date:</span> <%= messages[i].added %></p>
+                            <button class="details-close-btn" data-close-id="<%= i %>">close</button>
+                        </div>
+                        
+                    </dialog>
                 </div>
             <% } %>
         </div>
@@ -28,4 +39,24 @@
             <a href="/new" id="new-btn">New Message</a>
         </div>
     </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () =>{
+            document.querySelectorAll(".details-btn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const id = btn.getAttribute("data-id");
+                    const details = document.querySelector(`#details-${id}`);
+                    details.showModal();
+                    document.querySelector("body").classList.toggle("dialogue-open");
+                })
+            })
+            document.querySelectorAll(".details-close-btn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const id = btn.getAttribute("data-close-id");
+                    const details = document.querySelector(`#details-${id}`);
+                    details.close();
+                    document.querySelector("body").classList.toggle("dialogue-open");
+                })
+            })
+        })
+    </script>
 </html>
