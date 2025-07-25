@@ -9,7 +9,7 @@ const colors = [
     "#898AC4",
 ];
 
-const messages = [
+let messages = [
     {
         text: "Hi there!",
         user: "Amando",
@@ -61,3 +61,4 @@ const messages = [
 ];
 
 export default messages;
+export { colors };
