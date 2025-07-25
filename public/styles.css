@@ -65,6 +65,10 @@ body {
     font-size: 1.1rem;
 }
 
+.details-btn-div {
+    margin-left: 10px;
+}
+
 #chatroom .message:nth-child(even) {
     align-self: end;
 }
@@ -75,6 +79,13 @@ body {
 }
 #chatroom .message:nth-child(even) .message-text-div {
     justify-content: end;
+    order: 1;
+}
+
+#chatroom .message:nth-child(even) .details-btn-div {
+    order: 0;
+    margin-left: 0;
+    margin-right: 10px;
 }
 
 .btn-div {
@@ -145,4 +156,34 @@ input {
 
 #new-btn:active {
     transform: translateY(2px);
+}
+
+dialog {
+    height: 160px;
+    width: 480px;
+    padding: 15px;
+    margin: auto;
+}
+
+dialog:active {
+    display: flex;
+    flex-direction: column;
+}
+
+.dialogue-div p {
+    margin-bottom: 10px;
+}
+.dialogue-div span {
+    font-weight: bold;
+}
+
+.details-close-btn {
+    background-color: black;
+    color: white;
+    padding: 5px 20px;
+    border: none;
+}
+
+.dialogue-open {
+    opacity: 0.2;
 }
